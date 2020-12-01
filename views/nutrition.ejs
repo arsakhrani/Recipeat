@@ -15,7 +15,7 @@
         </li>
     </ul>
     <div>
-        <a href="http://localhost:3000/nutritions/<%=nutrition._id%>/edit">Edit Info</a> <a href="http://localhost:3000/nutritions">Return to Ingredients</a>
+        <a href="/nutritions/<%=nutrition._id%>/edit">Edit Info</a> <a href="/nutritions">Return to Ingredients</a>
     </div>
     <form action="/nutritions/<%=nutrition._id%>?_method=DELETE" method="POST">
         <% let disabled = 'disabled' %>

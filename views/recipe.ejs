@@ -42,7 +42,7 @@
         <h4>Instructions</h4>
         <p><%= recipe.instructions %> </p>
         <div>
-            <a href="http://localhost:3000/recipes/<%=recipe._id%>/edit">Edit Recipe</a> <a href="http://localhost:3000/recipes">Return to Recipes</a>
+            <a href="/recipes/<%=recipe._id%>/edit">Edit Recipe</a> <a href="/recipes">Return to Recipes</a>
         </div>
         <form action="/recipes/<%=recipe._id%>?_method=DELETE" method="POST">
             <button class="btn btn-danger">Delete Recipe</button>
