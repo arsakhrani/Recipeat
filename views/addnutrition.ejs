@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate') %> 
+<h1>Add your new nutritional information here!</h1>
+<form action="/nutritions" method="POST" novalidate class="validated-form">
+    <div class="mb-3">
+        <label class="form-label" for="ingredient">Ingredient Name:</label>
+        <select class="form-control alphabet" name="ingredient" id="ingredient" required>
+            <option value="">Aa-Please Select an Ingredient</option>
+        <% const ingredientArray = [] %>
+        <% for (let recipe of recipes) { %> 
+            <% for (let ingredient of recipe.ingredients) { %> 
+                <% ingredientArray.push(ingredient.name) %>
+            <% } %> 
+        <% } %>
+        <% uniqueIngredientArray = [...new Set(ingredientArray)] %> 
+        <% for (let nutrition of nutritions) { %>  
+            <% for( let i = 0; i < uniqueIngredientArray.length; i++){ %>              
+                <% if ( uniqueIngredientArray[i] === nutrition.ingredient) { %>
+                    <% uniqueIngredientArray.splice(i, 1); %>
+                <% } %>
+            <% } %>
+            <% } %>
+            <% for (let uniqueIngredient of uniqueIngredientArray) { %>  
+            <option value="<%= uniqueIngredient %>"><%= uniqueIngredient %></option>
+        <% } %>
+        </select>
+    </div>
+    <div class="mb-3 row">
+        <div class="col">
+            <label class="form-label"  for="calorie-value">Calories:</label>
+            <input class="form-control" type="number" id="calorie-value" name="calorievalue" min="0" step="any" required>
+        </div>
+        <div class="col">
+            <label class="form-label"  for="calorie-per">per:</label>
+            <select class="form-control" name="calorieper" id="calorie-per" required>
+                <option value="100gram">100 g</option>
+                <option value="1pc">1 pc</option>
+                <option value="100ml">100 ml</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div class="col">       
+            <label class="form-label"  for="protein">Protein:</label>
+            <input class="form-control" type="number" min="0" id="protein" step="any" name="protein" required>
+        </div>
+        <div class="col">
+            <label class="form-label"  for="carb">Carb:</label>
+            <input class="form-control" type="number" min="0" id="carb" step="any" name="carb" required>
+        </div>
+        <div class="col">
+            <label class="form-label"  for="fat">Fat:</label>
+            <input class="form-control" type="number" min="0" id="fat" step="any" name="fat" required> 
+        </div>
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="/styles/js/new.js"></script>

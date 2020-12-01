@@ -1,0 +1,86 @@
+<% layout('layouts/boilerplate') %> 
+<h1>Add your new recipe here!</h1>
+<form action="/recipes" method="POST" novalidate class="validated-form">
+    <div class="mb-3">
+        <label class="form-label" for="name">Recipe Name:</label>
+        <input class="form-control" type="text" id="name" name="name" required>
+    </div>
+    <p>Choose meal type:</p>
+    <div class="mb-3">
+        <input type="checkbox" id="breakfast" name="breakfast">
+        <label class="form-label" for="breakfast">Breakfast</label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" id="lunch" name="lunch">
+        <label class="form-label" for="lunch">Lunch</label>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" id="dinner" name="dinner">
+        <label class="form-label" for="dinner">Dinner</label>
+    </div>
+    <div class="mb-3">
+        <input type="button" value="Add another Ingredient" class="btn btn-primary addfield"/>
+    </div>
+    <div class="mb-3">
+        <input type="button" value="Remove an Ingredient" class="btn btn-primary removefield"/>
+    </div>
+    <div class="mb-3 row">
+        <div class="col">
+            <label class="form-label" for="ingredient1">Ingredient:</label>
+            <input class="form-control" type="text" id="ingredient1" name="ingredient1" list="ingredients" required>
+                <datalist id=ingredients>
+                    <% const ingredientArray = [] %>
+                    <% for (let recipe of recipes) {%> 
+                        <% for (let ingredient of recipe.ingredients) { %> 
+                            <% ingredientArray.push(ingredient.name) %>
+                        <% } %> 
+                    <% } %> 
+                    <% uniqueIngredientArray = [...new Set(ingredientArray)] %> 
+                    <% for (let uniqueIngredient of uniqueIngredientArray) { %>   
+                        <option value="<%= uniqueIngredient %>">
+                    <% } %> 
+                </datalist>
+        </div>
+        <div class="col">
+            <label class="form-label" for="unit1">Unit:</label>
+            <select class="form-control" id="unit1" name="unit1" required>
+                <option value="g">g</option>
+                <option value="pc">pc</option>
+                <option value="ml">ml</option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label" for="amount1">Amount:</label>
+            <input class="form-control" type="number" min="0" id="amount1" step="any" name="amount1" required>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div class="col">
+            <label class="form-label" for="ingredient2">Ingredient:</label>
+            <input class="form-control" type="text" id="ingredient2" name="ingredient1" list="ingredients" required>
+        </div>
+        <div class="col">
+            <label class="form-label" for="unit2">Unit:</label>
+            <select class="form-control" id="unit2" name="unit1" required>
+                <option value="g">g</option>
+                <option value="pc">pc</option>
+                <option value="ml">ml</option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label" for="amount2">Amount:</label>
+            <input class="form-control" type="number" min="0" id="amount2" step="any" name="amount1" required>
+        </div>
+    </div>
+    <div class="response">
+    </div> 
+    <div class="mb-3">
+        <label class="form-label" for="intructions">Instructions</label>
+        <textarea class="form-control" id="instructions" name="instructions" required></textarea>
+    </div>       
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="/styles/js/new.js"></script>

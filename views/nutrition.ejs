@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %> 
+    <h1><%= nutrition.ingredient %> </h1>
+    <h4>Calories:</h4>
+    <p><%= nutrition.calories.value %> kcal per <%= nutrition.calories.per %></p>
+    <h4>Nutritional Info:</h4>
+    <ul>
+        <li>
+            Protein: <%= nutrition.protein %> g
+        </li>
+        <li>
+            Carbs: <%= nutrition.carb %> g
+        </li>
+        <li>
+            Fat: <%= nutrition.fat %> g
+        </li>
+    </ul>
+    <div>
+        <a href="http://localhost:3000/nutritions/<%=nutrition._id%>/edit">Edit Info</a> <a href="http://localhost:3000/nutritions">Return to Ingredients</a>
+    </div>
+    <form action="/nutritions/<%=nutrition._id%>?_method=DELETE" method="POST">
+        <% let disabled = 'disabled' %>
+            <% if (user.username === 'arsakhrani') { %>
+                <% disabled = '' %>
+            <% } %> 
+        <button class="btn btn-danger" <%= disabled %>>Delete Ingredient</button>
+    </form>

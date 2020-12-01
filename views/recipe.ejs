@@ -1,0 +1,63 @@
+<% layout('layouts/boilerplate') %> 
+<% let totalCalories = 0 %> 
+<% let totalProtein = 0 %>
+<% let totalCarb = 0 %>  
+<% let totalFat = 0 %> 
+<% for (let item of ingredientPack) { %>
+    <% if (item.calories.per === '100gram' || item.calories.per === '100ml' ) { %>
+        <% item.calories.value = item.calories.value / 100 %> 
+        <% item.protein = item.protein / 100 %>
+        <% item.carb = item.carb / 100 %>
+        <% item.fat = item.fat / 100 %>
+    <% } %> 
+    <% for (let ingredient of recipe.ingredients) {%> 
+        <% if (item.ingredient === ingredient.name) { %>
+            <% item.calories.value = item.calories.value * ingredient.amount %>
+            <% item.protein = item.protein * ingredient.amount %>
+            <% item.carb = item.carb * ingredient.amount %>
+            <% item.fat = item.fat * ingredient.amount %> 
+        <% } %>  
+    <% } %>
+    <% totalCalories += item.calories.value %> 
+    <% totalProtein += item.protein %>
+    <% totalCarb += item.carb %>
+    <% totalFat += item.fat %> 
+<% } %> 
+<h1><%= recipe.name %> </h1>
+<div class="row">
+    <div class="col">
+        <h4>Ingredients</h4>
+        <ul>
+            <% for (let ingredient of recipe.ingredients) {%> 
+                <% let infoChecker = '*' %> 
+                <% for (let item of ingredientPack) { %>
+                    <% if (item.ingredient === ingredient.name) { %>
+                        <% infoChecker = '' %>
+                        <% break %>  
+                    <% } %> 
+                <% } %> 
+                <li><%=ingredient.amount%> <%=ingredient.unit%> <%=ingredient.name%> <%= infoChecker %>  </li>
+            <% } %>  
+        </ul>
+        <h4>Instructions</h4>
+        <p><%= recipe.instructions %> </p>
+        <div>
+            <a href="http://localhost:3000/recipes/<%=recipe._id%>/edit">Edit Recipe</a> <a href="http://localhost:3000/recipes">Return to Recipes</a>
+        </div>
+        <form action="/recipes/<%=recipe._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete Recipe</button>
+        </form>
+        <p class="text-muted">* - Ingredient is missing nutritional information. Recipe Nutritional information may be incorrect if an ingredient is missing nutritional information.</p>
+    </div>
+    <div class="col">
+        <h4>Nutritional Information</h4>
+        <h6>Total Calories:</h6>
+        <p class="text-muted"><%= totalCalories %> kcal </p>
+        <h6>Total Protein:</h6>
+        <p class="text-muted"><%= totalProtein %> grams </p>
+        <h6>Total Carbs:</h6>
+        <p class="text-muted"><%= totalCarb %> grams </p>
+        <h6>Total Fat:</h6>
+        <p class="text-muted"><%= totalFat %> grams </p>
+    </div>
+</div>

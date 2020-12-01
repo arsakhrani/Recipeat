@@ -1,0 +1,7 @@
+<% layout('layouts/boilerplate') %> 
+    <h1>Nutritional Information Here!</h1>
+    <p>Please click on an ingredient to see more information</p>
+    <% for (let nutrition of nutritions) { %>
+        <h3><a href="/nutritions/<%=nutrition._id%>"><%= nutrition.ingredient  %></a> </h3>
+    <% } %>  
+    <a href="/nutritions/new">Add new nutritional information</a>
