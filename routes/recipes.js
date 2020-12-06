@@ -11,17 +11,20 @@ const Nutrition = require('../models/nutrition');
 router.get('/', isLoggedIn, wrapAsync(async (req, res, next) => {
     const {mealtype} = req.query;
     if(mealtype === 'breakfast') {
-        const recipes = await Recipe.find({'mealType.breakfast': true, author: req.user._id})
+        const recipes = await Recipe.find({'mealType.breakfast': true})
         res.render('recipes', {recipes, mealtype})
     } else if (mealtype === 'lunch') {
-        const recipes = await Recipe.find({'mealType.lunch': true, author: req.user._id})
+        const recipes = await Recipe.find({'mealType.lunch': true})
         res.render('recipes', {recipes, mealtype})
     } else if (mealtype === 'dinner') {
-        const recipes = await Recipe.find({'mealType.dinner': true, author: req.user._id})
+        const recipes = await Recipe.find({'mealType.dinner': true})
+        res.render('recipes', {recipes, mealtype})
+    } else if (mealtype === 'your') {
+        const recipes = await Recipe.find({'author': req.user._id})
         res.render('recipes', {recipes, mealtype})
     } else {
-        const recipes = await Recipe.find({author: req.user._id})
-        res.render('recipes', {recipes, mealtype: 'All'})
+        const recipes = await Recipe.find({})
+        res.render('recipes', {recipes, mealtype:'available'})
     }
 }));
 
@@ -125,7 +128,7 @@ router.delete('/:id', isLoggedIn, wrapAsync(async (req, res, next) => {
 
 router.get('/:id', isLoggedIn, wrapAsync(async (req, res, next) => {
     const { id } = req.params;
-    const recipe = await Recipe.findById(id)
+    const recipe = await Recipe.findById(id).populate('author')
     if (!recipe) {
         req.flash('error', 'Cannot find that recipe!')
         return res.redirect('/recipes')

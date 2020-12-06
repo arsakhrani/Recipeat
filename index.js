@@ -20,6 +20,7 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
 const MongoDBStore = require("connect-mongo")(session);
+const {isLoggedIn} = require('./utils/middleware');
 
 const Recipe = require('./models/recipe');
 const Nutrition = require('./models/nutrition');
@@ -85,8 +86,24 @@ app.use('/', userRoutes);
 app.use('/recipes', recipes)
 app.use('/nutritions', nutritions)
 
-app.get('/', wrapAsync(async (req, res) => {
-    res.render('index')
+app.get('/', isLoggedIn, wrapAsync(async (req, res) => {
+    const {mealtype} = req.query;
+    if(mealtype === 'breakfast') {
+        const recipes = await Recipe.find({'mealType.breakfast': true})
+        res.render('recipes', {recipes, mealtype})
+    } else if (mealtype === 'lunch') {
+        const recipes = await Recipe.find({'mealType.lunch': true})
+        res.render('recipes', {recipes, mealtype})
+    } else if (mealtype === 'dinner') {
+        const recipes = await Recipe.find({'mealType.dinner': true})
+        res.render('recipes', {recipes, mealtype})
+    } else if (mealtype === 'your') {
+        const recipes = await Recipe.find({'author': req.user._id})
+        res.render('recipes', {recipes, mealtype})
+    } else {
+        const recipes = await Recipe.find({})
+        res.render('recipes', {recipes, mealtype:'available'})
+    }
 }));
 
 

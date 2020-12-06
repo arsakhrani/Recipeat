@@ -1,9 +1,11 @@
 <% layout('layouts/boilerplate') %> 
 <body>
-    <h1><%= mealtype.toUpperCase() %>  Recipes here!</h1>
+    <% if (mealtype) { %> 
+        <h1>All <%= mealtype %> recipes here!</h1>
+    <% } %> 
     <p>Please click on a meal to see more information</p>
     <p>Filter by meal type:</p>
-    <a href="/recipes">All Recipes</a> <a href="/recipes?mealtype=breakfast">Breakfast</a> <a href="/recipes?mealtype=lunch">Lunch</a> <a href="/recipes?mealtype=dinner">Dinner</a>
+    <a href="/recipes">All Recipes</a> <a href="/recipes?mealtype=your">My Recipes</a> <a href="/recipes?mealtype=breakfast">Breakfast</a> <a href="/recipes?mealtype=lunch">Lunch</a> <a href="/recipes?mealtype=dinner">Dinner</a>
     <% for (let recipe of recipes) { %>
         <h3><a href="/recipes/<%=recipe._id%>"><%= recipe.name  %></a> </h3>
     <% } %>  
