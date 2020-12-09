@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %> 
     <h1><%= recipe.name %> </h1>
-    <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+    <form action="/recipes/<%=recipe._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label" for="name">Recipe Name:</label>
             <input class="form-control" type="text" id="name" name="name" required value="<%= recipe.name %> ">
@@ -93,6 +93,10 @@
         <div class="mb-3">
             <label class="form-label" for="intructions">Instructions:</label>
             <textArea class="form-control" id="instructions" name="instructions"><%= recipe.instructions %></textArea>
+        </div> 
+        <div class="mb-3">
+            <label for="image" class="form-label">Change Image (Optional):</label>
+            <input class="form-control" type="file" id="image" name="image">
         </div>       
         <div class="mb-3">
             <button class="btn btn-primary" type="submit">Submit</button>

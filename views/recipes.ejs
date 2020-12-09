@@ -4,9 +4,19 @@
         <h1>All <%= mealtype %> recipes here!</h1>
     <% } %> 
     <p>Please click on a meal to see more information</p>
+    <a href="/recipes/new">Add new recipes</a>
     <p>Filter by meal type:</p>
     <a href="/recipes">All Recipes</a> <a href="/recipes?mealtype=your">My Recipes</a> <a href="/recipes?mealtype=breakfast">Breakfast</a> <a href="/recipes?mealtype=lunch">Lunch</a> <a href="/recipes?mealtype=dinner">Dinner</a>
-    <% for (let recipe of recipes) { %>
-        <h3><a href="/recipes/<%=recipe._id%>"><%= recipe.name  %></a> </h3>
-    <% } %>  
-    <a href="/recipes/new">Add new recipes</a>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <% for (let recipe of recipes) { %>
+                <div class="card bg-light text-black container">
+                    <img src="<%= recipe.image %>" class="card-img" alt="...">
+                    <div class="card-img-overlay d-flex justify-content-end">
+                        <a href="/recipes/<%= recipe._id %>" class="stretched-link" id="cardlink">
+                        <h5 class="card-title"><%= recipe.name  %></h5>
+                        </a>
+                    </div>
+                </div>
+          <% } %> 
+        </div> 
+
