@@ -3,7 +3,7 @@ body {
 }
 
 .card {
-    height: 21vw;
+    height: 33vh;
 }
 
 .card-title {
@@ -14,7 +14,7 @@ body {
 }
 
 .card-img {
-    height: 20vw;
+    height: 32vh;
     object-fit: cover;
 }
 
