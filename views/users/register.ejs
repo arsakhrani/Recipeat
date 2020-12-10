@@ -1,19 +1,23 @@
 <% layout('layouts/boilerplate') %>
-<h1>Register</h1>
-<form action="/register" method="POST" novalidate class="validated-form">
-    <div class="mb-3">
-        <label class="form-label" for="username">Username:</label>
-        <input class="form-control" type="text" id="username" name="username" required>
+<div class="row">
+    <div class="col-md-4 offset-md-4 mt-5">
+        <h1 class="mb-5">Register</h1>
+        <form action="/register" method="POST" novalidate class="validated-form">
+            <div class="form-floating mb-3">
+                <input class="form-control black-style" type="text" id="username" name="username" placeholder="username" required>
+                <label class="form-label" for="username">Username:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control black-style" type="email" id="email" name="email" placeholder="email" required>
+                <label class="form-label" for="email">Email:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control black-style" type="password" id="password" name="password" placeholder="password" required>
+                <label class="form-label" for="password">Password:</label>
+            </div>
+            <button class="btn btn-dark btn-lg">Register Now</button>
+        </form>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="email">Email:</label>
-        <input class="form-control" type="email" id="email" name="email" required>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password:</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-    </div>
-    <button class="btn btn-primary">Register Now</button>
-</form>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="/styles/js/new.js"></script>

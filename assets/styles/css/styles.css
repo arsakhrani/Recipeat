@@ -27,3 +27,28 @@ body {
     color: black;
     text-decoration: none;
 }
+
+.offset-md-4 {
+    text-align: center;
+}
+
+.form-control.black-style {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid black;
+}
+
+.form-control:focus.black-style {
+    border-color: black;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+.form-control:valid.black-style {
+    border-color: black;
+}
+
+.btn-lg {
+    border-radius: 0;
+}
