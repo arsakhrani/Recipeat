@@ -1,7 +1,26 @@
 <% layout('layouts/boilerplate') %> 
     <h1>Nutritional Information Here!</h1>
     <p>Please click on an ingredient to see more information</p>
-    <% for (let nutrition of nutritions) { %>
-        <h3><a href="/nutritions/<%=nutrition._id%>"><%= nutrition.ingredient  %></a> </h3>
-    <% } %>  
     <a href="/nutritions/new">Add new nutritional information</a>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Ingredient</th>
+                <th scope="col">Protein</th>
+                <th scope="col">Carb</th>
+                <th scope="col">Fat</th>
+                <th scope="col">Calories</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let nutrition of nutritions) { %>
+                <tr>
+                    <th scope="row"><a id="nutrition-link" href="/nutritions/<%=nutrition._id%>"><%= nutrition.ingredient %></a></th>
+                    <td><%= nutrition.protein %></td>
+                    <td><%= nutrition.carb %></td>
+                    <td><%= nutrition.fat %></td>
+                    <td><%= nutrition.calories.value %> per <%= nutrition.calories.per %> </td>
+                </tr>
+            <% } %>  
+        </tbody>
+      </table>

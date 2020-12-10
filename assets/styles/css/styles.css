@@ -1,9 +1,15 @@
+.navbar-brand {
+    font-size: 2.3em;
+}
+
 body {
     font-family: 'Montserrat', sans-serif !important;
+    background-color: #f8f9fa;
 }
 
 .card {
-    height: 33vh;
+    height: 50vh;
+    border: none;
 }
 
 .card-title {
@@ -14,7 +20,7 @@ body {
 }
 
 .card-img {
-    height: 32vh;
+    height: 49vh;
     object-fit: cover;
 }
 
@@ -52,3 +58,40 @@ body {
 .btn-lg {
     border-radius: 0;
 }
+
+#nutrition-link {
+    color: black;
+    text-decoration: none;
+}
+
+#side-bar {
+    display: inline-block;
+    width: 15vw;
+}
+
+.content {
+    display: inline-block;
+    width: 85vw;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.filter-link {
+    color: black;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+*:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+  }
+
+  @media (max-width: 1199.98px)  {
+    .content {
+        display: block;
+        width: 100vw;
+    }
+  }
