@@ -53,6 +53,8 @@ store.on('error', function (e) {
     console.log('SESSION ERROR', e)
 })
 
+app.set('trust proxy', 1);
+
 const sessionConfig = {
     name: 'session',
     store: store,
