@@ -16,6 +16,12 @@ module.exports.index = async (req, res, next) => {
     } else if (mealtype === 'your') {
         const recipes = await Recipe.find({'author': req.user._id})
         res.render('recipes', {recipes, mealtype})
+    } else if (mealtype === 'vegetarian') {
+        const recipes = await Recipe.find({isVegetarian: true})
+        res.render('recipes', {recipes, mealtype})
+    } else if (mealtype === 'vegan') {
+        const recipes = await Recipe.find({isVegan: true})
+        res.render('recipes', {recipes, mealtype})
     } else {
         const recipes = await Recipe.find({})
         res.render('recipes', {recipes, mealtype:'available'})
@@ -34,6 +40,8 @@ module.exports.addRecipe = async (req, res, next) => {
         if (d.breakfast) {d.breakfast = true}
         if (d.lunch) {d.lunch = true}
         if (d.dinner) {d.dinner = true}
+        if (d.vegetarian) {d.vegetarian = true}
+        if (d.vegan) {d.vegan = true}
         ingredientArray = []
         for (let i = 0; i < d.ingredient1.length; i++) {
             let obj = {
@@ -53,6 +61,8 @@ module.exports.addRecipe = async (req, res, next) => {
             ingredients: ingredientArray,
             instructions: d.instructions,
             author: req.user._id,
+            isVegetarian: d.vegetarian,
+            isVegan: d.vegan
         })
         if (req.file) {
             newRecipe.image = req.file.path
@@ -84,6 +94,8 @@ module.exports.editRecipe = async (req, res, next) => {
     if (d.breakfast) {d.breakfast = true}
     if (d.lunch) {d.lunch = true}
     if (d.dinner) {d.dinner = true}
+    if (d.vegetarian) {d.vegetarian = true}
+    if (d.vegan) {d.vegan = true}
     for (let i = 0; i < d.ingredient1.length; i++) {
         let obj = {
             name: d.ingredient1[i],
@@ -100,7 +112,9 @@ module.exports.editRecipe = async (req, res, next) => {
             dinner: d.dinner
         },
         ingredients: ingredientArray,
-        instructions: d.instructions
+        instructions: d.instructions,
+        isVegetarian: d.vegetarian,
+        isVegan: d.vegan
     }
     if (req.file) {
         if (recipeImageCheck.imageDelete) {

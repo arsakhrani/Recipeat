@@ -31,6 +31,22 @@
             <label class="form-label" for="dinner">Dinner</label>
         </div>
         <div class="mb-3">
+            <% let vegetarianCheck = '' %>
+            <% if (recipe.isVegetarian === true) { %>
+                <% vegetarianCheck = 'checked' %> 
+            <% } %> 
+            <input type="checkbox" id="vegetarian" name="vegetarian" <%= vegetarianCheck %> >
+            <label class="form-label" for="vegetarian">Vegetarian</label>
+        </div>
+        <div class="mb-3">
+            <% let veganCheck = '' %>
+            <% if (recipe.isVegan === true) { %>
+                <% veganCheck = 'checked' %> 
+            <% } %> 
+            <input type="checkbox" id="vegan" name="vegan" <%= veganCheck %> >
+            <label class="form-label" for="vegan">Vegan</label>
+        </div>
+        <div class="mb-3">
             <input type="button" value="Add another Ingredient" class="btn btn-primary addfield"/>
         </div>
         <div class="mb-3">

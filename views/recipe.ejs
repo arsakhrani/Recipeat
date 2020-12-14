@@ -24,6 +24,11 @@
     <% totalFat += item.fat %> 
 <% } %> 
 <h1><%= recipe.name %> </h1>
+<% if (recipe.isVegan) { %> 
+    <p class="text-muted">This recipe is Vegan!</p>
+<% } else if (recipe.isVegetarian) { %> 
+    <p class="text-muted">This recipe is Vegetarian!</p>
+<% } %> 
 <div class="row">
     <div class="col">
         <h4>Ingredients</h4>
