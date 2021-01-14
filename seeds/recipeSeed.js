@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Recipe = require('../models/recipe');
 
-mongoose.connect('mongodb+srv://arsakhrani:BikaPeluD1y9ChyW@cluster0.naayg.mongodb.net/<dbname>?retryWrites=true&w=majority', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost:27017/recipeApp', {useNewUrlParser: true})
     .then(() => {
         console.log('Mongoose connection open');
     })
