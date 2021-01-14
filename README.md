@@ -10,7 +10,7 @@ https://glacial-chamber-21997.herokuapp.com/register
 The project for the most part is fully functional and complete. However, I do aim to add to it as I learn more. 
 
 ### Installation and Setup Instructions
-Example:
+
 Clone down this repository. You will need node and npm installed globally on your machine.
 
 Installation:
