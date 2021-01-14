@@ -17,7 +17,7 @@ Installation:
 
 `npm install`
 
-Please make sure to have MongoDB installed to run locally. Defauly local port for mongo is 27017.
+Please make sure to have MongoDB installed to run locally. Default local port for mongo is 27017.
 
 To Visit App:
 
